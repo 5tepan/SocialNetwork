@@ -1,0 +1,20 @@
+.Message {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Text {
+    width: 300px;
+    height: 100px;
+}
+
+.BtnSend {
+    width: 100px;
+    height: 50px;
+}
+
+.BtnBlock {
+    margin-left: 205px;
+    margin-top: 5px;
+}

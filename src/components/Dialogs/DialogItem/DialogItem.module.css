@@ -1,0 +1,7 @@
+.DialogsItem {
+    padding: 10px;
+}
+
+.DialogsItem .Active {
+    color: red;
+}

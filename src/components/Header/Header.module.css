@@ -1,0 +1,9 @@
+.Header {
+    grid-area: h;
+    background-color: #B071D0;
+}
+
+.Header img {
+    width: 70px;
+    padding: 10px;
+}
