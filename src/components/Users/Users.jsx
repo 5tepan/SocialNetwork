@@ -1,45 +1,25 @@
 import React from "react";
 import style from './Users.module.css'
+import axios from "axios";
+import userPhoto from '../../assets/images/default-user.png'
 
 const Users = (props) => {
-debugger
     if (props.users.length === 0) {
-        props.setUsers([
-                {
-                    id: 1,
-                    urlFoto: 'https://fgtcabinetry.com/wp-content/uploads/2022/06/testi-user.png',
-                    followed: false,
-                    fullName: 'Step',
-                    status: 'yoyo',
-                    location: {city: 'Minsk', country: 'Belarus'}
-                },
-                {
-                    id: 2,
-                    urlFoto: 'https://fgtcabinetry.com/wp-content/uploads/2022/06/testi-user.png',
-                    followed: true,
-                    fullName: 'Andrey',
-                    status: 'hihi',
-                    location: {city: 'Moskou', country: 'Russia'}
-                },
-                {
-                    id: 3,
-                    urlFoto: 'https://fgtcabinetry.com/wp-content/uploads/2022/06/testi-user.png',
-                    followed: false,
-                    fullName: 'Samanta',
-                    status: 'hallo',
-                    location: {city: 'Berlin', country: 'Germany'}
-                }
-            ]
-        )
+
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                props.setUsers(response.data.items)
+            })
     }
-debugger
     return (
         <div>
             {
                 props.users.map(user => <div key={user.id}>
                     <span>
                         <div>
-                            <img className={style.userFoto} src={user.urlFoto}/>
+                            <img src={
+                                user.photos.small != null ? user.photos.small : userPhoto}
+                                 className={style.userFoto}/>
                         </div>
                         <div>
                             {user.followed
@@ -52,12 +32,12 @@ debugger
                         </div>
                     </span>
                     <span>
-                        <div>{user.fullName}</div>
+                        <div>{user.name}</div>
                         <div>{user.status}</div>
                     </span>
                     <span>
-                        <div>{user.location.country}</div>
-                        <div>{user.location.city}</div>
+                        <div>{'user.location.country'}</div>
+                        <div>{'user.location.city'}</div>
                     </span>
                 </div>)
             }
