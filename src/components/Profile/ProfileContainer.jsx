@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getProfileTunk, setUserProfile} from "../../redux/profileReducer";
+import {getProfileTunk} from "../../redux/profileReducer";
 import {useParams} from 'react-router-dom'
 import { useEffect } from 'react';
 
@@ -30,4 +30,4 @@ let mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {setUserProfile, getProfileTunk})(ProfileContainer)
+export default connect(mapStateToProps, {getProfileTunk})(ProfileContainer)
