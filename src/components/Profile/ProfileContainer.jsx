@@ -1,10 +1,9 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {setUserProfile} from "../../redux/profileReducer";
+import {getProfileTunk, setUserProfile} from "../../redux/profileReducer";
 import {useParams} from 'react-router-dom'
 import { useEffect } from 'react';
-import {profileAPI} from "../../api/ProfileAPI";
 
 
 const ProfileContainer = (props) => {
@@ -17,7 +16,7 @@ const ProfileContainer = (props) => {
     }
 
     useEffect(() => {
-        profileAPI.getProfile(params.userId).then(data=> {props.setUserProfile(data)});
+        props.getProfileTunk(params.userId)
     })
 
     return (
@@ -31,4 +30,4 @@ let mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {setUserProfile})(ProfileContainer)
+export default connect(mapStateToProps, {setUserProfile, getProfileTunk})(ProfileContainer)
