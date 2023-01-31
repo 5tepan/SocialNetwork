@@ -2,8 +2,9 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {getProfileTunk} from "../../redux/profileReducer";
-import {Navigate, useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import { useEffect } from 'react';
+import {withAuthNavigate} from "../../hoc/withAuthNavigate";
 
 
 const ProfileContainer = (props) => {
@@ -19,20 +20,16 @@ const ProfileContainer = (props) => {
         props.getProfileTunk(params.userId)
     })
 
-    if (!props.isAuth) {
-        return <Navigate to={'/login'}/>
-    }
-
     return (
         <Profile profile= {props.profile} />
     );
 }
 
+let AuthNavigateComponent = withAuthNavigate(ProfileContainer)
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth
+    profile: state.profilePage.profile
 })
 
 
-export default connect(mapStateToProps, {getProfileTunk})(ProfileContainer)
+export default connect(mapStateToProps, {getProfileTunk})(AuthNavigateComponent)
