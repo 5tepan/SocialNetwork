@@ -5,6 +5,7 @@ import {getProfileTunk} from "../../redux/profileReducer";
 import {useParams} from 'react-router-dom'
 import { useEffect } from 'react';
 import {withAuthNavigate} from "../../hoc/withAuthNavigate";
+import {compose} from "redux";
 
 
 const ProfileContainer = (props) => {
@@ -25,11 +26,11 @@ const ProfileContainer = (props) => {
     );
 }
 
-let AuthNavigateComponent = withAuthNavigate(ProfileContainer)
-
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile
 })
 
-
-export default connect(mapStateToProps, {getProfileTunk})(AuthNavigateComponent)
+export default compose(
+    connect(mapStateToProps, {getProfileTunk}),
+    withAuthNavigate
+)(ProfileContainer)
